@@ -82,6 +82,12 @@ public class ClientController {
     }
 
 
+    @DeleteMapping("/") //DELETE ...../client/i
+    public  void deleteClient(@RequestParam(defaultValue = "0") int id){  //con @requestparam y el mapping nos asegurameos de que para eliminar debe tener un parametro id MIRAR DOCUMENTACION
+        repoCliente.deleteById(id);
+    }
+
+
 
 
 
