@@ -4,6 +4,8 @@ import com.example.app1.entities.Client;
 import com.example.app1.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class ClientService implements iClientService {
@@ -32,5 +34,8 @@ public class ClientService implements iClientService {
 
         repo.save(c);
     }
+
+
+
 
 }

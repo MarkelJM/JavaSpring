@@ -49,7 +49,7 @@ public class ClientController {
     }
     */
     @PostMapping(path = "/") //POST: client
-    public ResponseEntity<Client> inserClient(@RequestBody Client client) {
+    public ResponseEntity<Client> insertClient(@RequestBody Client client) {
         client.setId(-1);//si el usuario  indica en el json un id, aqui indicamos que el id se cambia a-1 y como no acepta menor de 0 crea un nuevo seguido al ultimo
         var c = repoCliente.save(client); //@RequestBody busca objetos json o algo asi
         return ResponseEntity.ok(c);

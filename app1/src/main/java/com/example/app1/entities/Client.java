@@ -15,8 +15,15 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter private  int id;
     @Setter @Getter private  String name;
+
+
+
     public Client(String name){
         this.name = name;
+    }
+
+    public int getCodigo(){
+        return id;
     }
 
 
