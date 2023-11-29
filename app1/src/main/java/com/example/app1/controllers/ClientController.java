@@ -2,8 +2,10 @@ package com.example.app1.controllers;
 
 import com.example.app1.entities.Client;
 import com.example.app1.repositories.ClientRepository;
+import com.example.app1.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,8 +14,17 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "client") //al controlador se le añade un path
 public class ClientController {
+
+
     @Autowired
     private ClientRepository repoCliente;
+
+    private ClientService clienteService;
+
+    public ClientController(ClientService service){
+        this.clienteService = service;
+    }
+
 
     //@RequestMapping(path = "/", method = RequestMethod.GET)  //....../client/  @GetMapping(path = "/")
     @GetMapping(path = "/") //--> esto o esto: @RequestMapping(path = "/", method = RequestMethod.GET)
@@ -60,20 +71,13 @@ public class ClientController {
 
     @PatchMapping (path = "/") //POST: client
     public ResponseEntity<Void> patchClient(@RequestBody Client client) {
-        var optional = repoCliente.findById(client.getId());
-        if (!optional.isEmpty()) {
+        try{
+            clienteService.patch(client);
+
+        } catch (RuntimeException exc){
             return ResponseEntity.notFound().build();
-            //throw new RuntimeException("No existe el registro");
         }
-
-        var c = optional.get();
-
-        if (client.getName() != null){
-            client.setName(client.getName());
-        }
-        repoCliente.save(client); //@RequestBody busca objetos json o algo asi
-        return ResponseEntity.ok(null);
-
+        return  ResponseEntity.ok().build();
 
     }
 
