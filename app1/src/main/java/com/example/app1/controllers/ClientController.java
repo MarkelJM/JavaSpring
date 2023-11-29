@@ -59,10 +59,17 @@ public class ClientController {
     }
 
     @PatchMapping (path = "/") //POST: client
-    public ResponseEntity<Void> updateClient(@RequestBody Client client) {
-        if (!repoCliente.existsById(client.getId())) {
+    public ResponseEntity<Void> patchClient(@RequestBody Client client) {
+        var optional = repoCliente.findById(client.getId());
+        if (!optional.isEmpty()) {
             return ResponseEntity.notFound().build();
             //throw new RuntimeException("No existe el registro");
+        }
+
+        var c = optional.get();
+
+        if (client.getName() != null){
+            client.setName(client.getName());
         }
         repoCliente.save(client); //@RequestBody busca objetos json o algo asi
         return ResponseEntity.ok(null);
