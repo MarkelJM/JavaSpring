@@ -9,12 +9,12 @@
 <form action="" th:object="${compra}" method="post" enctype="multipart/form-data;charset=utf-8">
     <div>
         <label for="precio">Precio</label>
-        <input th:field="*{precio}" type="number" step="0.01" id="precio">
+        <input th:field="*{precio}" type="number" step="0.01" id="precio" required>
 
     </div>
     <div>
         <label for="desc">Descripción</label>
-        <input th:field="*{desc}" type="text" name="desc" id="desc">
+        <input th:field="*{desc}" type="text" name="desc" id="desc" required>
 
     </div>
 

@@ -1,6 +1,7 @@
 package com.example.app1.controllers;
 
 import com.example.app1.models.CompraForm;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -35,7 +36,8 @@ public class PagesControllers {
     }
 
     @PostMapping("compra")
-    public String purchaseItem(Model model, @ModelAttribute CompraForm compra, Errors error){
+    public String purchaseItem(Model model, @Valid @ModelAttribute CompraForm compra, Errors error){
+        System.out.println(error);
         if(compra.getPrecio() < 1.0){
             error.rejectValue("precio", "", "");
         }
