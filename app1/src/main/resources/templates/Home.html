@@ -6,5 +6,17 @@
 </head>
 <body>
     <p th:text="${nombre}"></p>
+
+    <ul>
+        <li th:each="item: ${nombres}" th:text="${item}"></li>
+    </ul>
+
+
+    <table border="1px solid black">
+        <tr th:each="item: ${nombres}">
+            <td th:text="${item.key}"></td>
+            <td th:text="${item.value}"></td>
+        </tr>
+    </table>
 </body>
 </html>
