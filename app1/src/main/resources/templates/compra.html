@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<form action="" method="post">
+<form action="" th:object="${compra}" method="post" enctype="multipart/form-data;charset=utf-8">
     <div>
         <label for="precio">Precio</label>
-        <input type="number" name="precio" id="precio">
+        <input th:field="*{precio}" type="number" step="0.01" id="precio">
 
     </div>
     <div>
         <label for="desc">Descripción</label>
-        <input type="text" name="desc" id="desc">
+        <input th:field="*{desc}" type="text" name="desc" id="desc">
 
     </div>
+
     <div>
-        <label for="fichero">Precio</label>
-        <input type="file"  id="fichero" style="display: none">
-
+        <input type="submit" value="enviar">
     </div>
+
 </form>
 </body>
 </html>
