@@ -2,9 +2,11 @@ package com.example.app1;
 
 import com.example.app1.entities.Client;
 import com.example.app1.services.Service1;
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.Persistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,8 @@ public class App1Application {
 	@Qualifier( "name")
 	private  String name;
 	*/
+	@Value("${username}")
+	private  String username;
 
 
 	public static void main(String[] args) {
@@ -43,6 +47,11 @@ public class App1Application {
 	//@Qualifier("nombre") -> con @Bean es suficiente para la creacion de la relacion
 	public String name(){
 		return "Markel";
+	}
+
+	@PostConstruct
+	public void postConstructor(){
+		System.out.println(">>>>" +username);
 	}
 
 

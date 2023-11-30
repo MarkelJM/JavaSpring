@@ -31,22 +31,23 @@ public class PagesControllers {
 
     @GetMapping("compra")
     public String purchaseItem(Model model){
-        model.addAttribute("compra", new CompraForm(10.0, ""));
+        model.addAttribute("compraForm", new CompraForm(10.0, ""));
         return  "compra";
     }
 
     @PostMapping("compra")
-    public String purchaseItem(Model model, @Valid @ModelAttribute CompraForm compra, Errors error){
+    public String purchaseItem(Model model, @Valid @ModelAttribute CompraForm compraForm, Errors error){
         System.out.println(error);
+        /*
         if(compra.getPrecio() < 1.0){
             error.rejectValue("precio", "", "");
         }
-
+        */
         if(error.hasErrors()){
-            model.addAttribute("compra",compra);
+            model.addAttribute("compraForm",compraForm);
             return  "compra";
         }
-        System.out.println(compra);
+        System.out.println(compraForm);
         return "redirect:compra";
     }
 
