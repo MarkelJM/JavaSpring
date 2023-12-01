@@ -14,11 +14,6 @@ public class AppjpaApplication {
 		SpringApplication.run(AppjpaApplication.class, args);
 	}
 
-	@PostConstruct
-	public void initDB(AuthorRepository repo) {
-		var auth1 = new Author("Juan");
-		auth1.getBooks().add(new Book());
-		repo.saveAndFlush(auth1);
-	}
+
 
 }
