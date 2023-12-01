@@ -6,7 +6,9 @@ import com.example.appjpa.repository.AuthorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.Duration;
 import java.time.LocalDate;
 
 @Configuration
@@ -30,6 +32,20 @@ public class InitConfig {
             /*
             usamos size para obligar a crear todos los libros, ya que son Lazy de por si y asi forzamos a crear hasta los null, pero da errores
              */
+            /*
+            var client = WebClient.create("/author");
+            client.get()
+                    .retrieve()
+                    .bodyToFlux(Author.class)
+                    .delayElements(Duration.ofSeconds(5))
+                    .toStream()
+                    .forEach(a -> System.out.println(a));
+
+
+             */
+
+            //retrieve construye solicitudes web
+            //usamos el stream ya que debemos manejar los datods de un flux a algo mas conocido
         };
     }
 }
