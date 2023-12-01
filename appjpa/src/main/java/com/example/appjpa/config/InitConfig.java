@@ -20,6 +20,10 @@ public class InitConfig {
             auth1.getBooks().add(book1);
             repo.saveAndFlush(auth1);
 
+            auth1 = new Author("Maite");
+            repo.saveAndFlush(auth1);
+
+
             //var response = repo.findById(1).get();
             //response.getBooks().size();
             //repo.saveAndFlush(auth1);
